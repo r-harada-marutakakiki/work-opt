@@ -1,0 +1,24 @@
+#!/bin/bash
+
+usage_exit() {
+  echo "Usage: ${0##*/} [-d date] " 1>&2
+  exit 1
+}
+
+DATE_SPECIFIED=false
+
+while getopts d: OPT
+do
+  case $OPT in
+    d)  DATE_SPECIFIED=true
+        DATE="$OPTARG";; 
+    \?) usage_exit;;
+  esac
+done
+        
+shift $(( OPTIND - 1)) 
+
+if $DATE_SPECIFIED ; 
+then (cat "$1" 2>/dev/null || cat) | ord | csvcut -c ID,STATUS,"DELIVERY DATE",STOCK,QTY,REMAINING | cawk -v date="$DATE" 'NR == 1 || $3 <= date' | cawk ' previd != $1 { print prev } { previd = $1; prev = $0 } END { print $0 }' | tail -n +2
+else (cat "$1" 2>/dev/null || cat) | ord | csvcut -c ID,STATUS,"DELIVERY DATE",STOCK,QTY,REMAINING | cawk 'NR == 1 || $4 >= 0 && $6 < 0' 
+fi

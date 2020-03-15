@@ -1,0 +1,26 @@
+#!/bin/bash
+
+usage_exit() {
+  echo "Usage: ${0##*/} [-avn]"
+  exit 1
+}
+
+SHOW_ALL=false
+VERBOSE=false
+
+while getopts avn OPT
+do
+  case $OPT in
+    a) SHOW_ALL=true;;
+    v) VERBOSE=true;;
+    n) echo | loc -av | csvcut -n
+       exit 0;;
+    \?) usage_exit;;
+  esac
+done
+
+shift $(( OPTIND - 1 ))
+
+FILE="$HOME/table/location.csv"
+("$SHOW_ALL" && cat "$FILE" || csvgrep -c ID -f <([ -p /dev/stdin ] && cat || cat "$1") "$FILE") | 
+("$VERBOSE" && (cat; :) || csvcut -c 1,4,5,7,8)

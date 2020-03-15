@@ -1,0 +1,6 @@
+#! /bin/bash
+
+INPUT=$([ -p /dev/stdin ] && cat || cat "$1" 2> /dev/null)
+
+cat "$HOME/table/SERVER" | grep -f <(echo "$INPUT")
+

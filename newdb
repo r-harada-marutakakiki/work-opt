@@ -1,6 +1,0 @@
-#! /bin/bash
-
-find "$HOME/PUBLIC/" > "$HOME/table/SERVER" 
-find "$HOME/HONSYA/" >> "$HOME/table/SERVER" 
-find "$HOME/SAITAMA/" >> "$HOME/table/SERVER" 
-find "$HOME/YOKOHAMA/" >> "$HOME/table/SERVER" 

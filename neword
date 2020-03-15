@@ -1,8 +1,0 @@
-#! /bin/bash
-
-ordpath="$HOME/YOKOHAMA/MFTBC受注DATA"
-header="$HOME/table/header/order"
-target="$HOME/table/order.csv"
-
-cat "$header" > "$target" 
-ls "$ordpath" | grep -e "^受注[0-9][0-9][0-9][0-9][0-9][0-9]旬.xlsx$" | in2csv "$ordpath/$(cat)" 2> /dev/null | drop 1 >> "$target"

@@ -1,0 +1,9 @@
+#! /bin/bash
+
+partspath="$HOME/YOKOHAMA/横浜・管理出荷Gr/KYK-005 パーツリスト.xlsx"
+header="$HOME/table/header/parts"
+target="$HOME/table/parts.csv"
+
+cat "$header" > "$target" 
+in2csv "$partspath" 2> /dev/null | drop 1 >> "$target"
+

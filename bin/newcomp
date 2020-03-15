@@ -1,0 +1,9 @@
+#! /bin/bash
+
+comppath="$HOME/YOKOHAMA/いろいろ/コピー構成部品リスト.xlsx"
+header="$HOME/table/header/components"
+target="$HOME/table/components.csv"
+
+cat "$header" > "$target" 
+in2csv "$comppath" 2> /dev/null | drop 17 | csvcut -C 1,14,15,16 >> "$target"
+

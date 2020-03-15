@@ -1,0 +1,35 @@
+#!/bin/bash
+
+usage_exit() {
+  echo "Usage: ${0##*/} [-avn]"
+  exit 1
+}
+
+SHOW_ALL=false
+VERBOSE=false
+
+while getopts avn OPT
+  do 
+    case $OPT in
+    a) SHOW_ALL=true;;
+    v) VERBOSE=true;;
+    n) echo | sup -av | csvcut -n
+       exit 0;;
+    \?) usage_exit;;
+    esac
+  done
+
+shift $(( OPTIND - 1 ))
+
+FILE="$HOME/table/suppliers.csv"
+$SHOW_ALL && cat "$FILE" && exit 0
+
+INPUT=$([ -p /dev/stdin ] && cat || cat "$1")
+lines () {
+  csvgrep -c CODE -f <(echo "$INPUT") "$FILE"
+}
+filter () {
+  $VERBOSE && cat || csvcut -c 1,2,4,8,9
+}
+
+lines | filter

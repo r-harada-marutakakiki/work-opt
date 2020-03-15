@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PUBLIC="/mnt/public-server/"
+HONSYA="/mnt/honsya-server/"
+SAITAMA="/mnt/saitama-server/"
+YOKOHAMA="/mnt/yokohama-server/"
+
+if [ ! -e $PUBLIC ] ; then sudo mkdir "$PUBLIC"; fi
+if [ ! -e $HONSYA ] ; then sudo mkdir "$HONSYA"; fi
+if [ ! -e $SAITAMA ] ; then sudo mkdir "$SAITAMA"; fi
+if [ ! -e $YOKOHAMA ] ; then sudo mkdir "$YOKOHAMA"; fi
+
+sudo mount -t drvfs '\\192.168.17.1\public' "$PUBLIC"
+sudo mount -t drvfs '\\192.168.15.150\share' "$HONSYA"
+sudo mount -t drvfs '\\192.168.11.150\share' "$SAITAMA"
+sudo mount -t drvfs '\\192.168.17.2\public' "$YOKOHAMA"

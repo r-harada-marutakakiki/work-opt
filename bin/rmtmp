@@ -4,4 +4,4 @@ readonly DIR="$HOME/YNAS/原田/TemporaryFiles/"
 
 if [ ! -e "$DIR" ]; then svr; fi
 
-find "$DIR" -mtime +"$1" | xargs rm -r
+find "$DIR" -mtime +"$1" | xargs --no-run-if-empty rm -r

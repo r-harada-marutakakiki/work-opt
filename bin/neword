@@ -1,6 +1,6 @@
 #! /bin/bash
 
-ordpath="$HOME/YOKOHAMA/MFTBC受注DATA"
+ordpath="$HOME/YNAS/MFTBC受注DATA"
 header="$HOME/table/header/order"
 target="$HOME/table/order.csv"
 

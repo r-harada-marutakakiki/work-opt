@@ -1,6 +1,6 @@
 #! /bin/bash
 
-find "$HOME/PUBLIC/" > "$HOME/table/SERVER" 
-find "$HOME/HONSYA/" >> "$HOME/table/SERVER" 
-find "$HOME/SAITAMA/" >> "$HOME/table/SERVER" 
-find "$HOME/YOKOHAMA/" >> "$HOME/table/SERVER" 
+find "/mnt/public-server" > "$HOME/table/SERVER" 
+find "/mnt/honsya-server" >> "$HOME/table/SERVER" 
+find "/mnt/saitama-server" >> "$HOME/table/SERVER" 
+find "/mnt/yokohama-server" >> "$HOME/table/SERVER" 

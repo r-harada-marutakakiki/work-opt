@@ -14,7 +14,7 @@ shift $(( OPTIND - 1 ))
 
 INPUT=$([ -p /dev/stdin ] && cat || cat "$1")
 
-cd "$HOME/WINHOME/Desktop/"
+cd "/mnt/c/Users/marutaka/Desktop"
 DEST=$(date +%Y%m%d_%H%M%S) 
 mkdir "$DEST"
 
